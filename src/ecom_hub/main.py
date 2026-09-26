@@ -4,8 +4,8 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from ..ecom_hub.config import APP_ENV, validate_required_secrets
-from ..ecom_hub.api.routes import health, events, orders
+from ecom_hub.config import APP_ENV, validate_required_secrets
+from ecom_hub.api.routes import health, events, orders
 
 
 @asynccontextmanager
@@ -49,3 +49,11 @@ app.include_router(orders.router)
 @app.get("/", tags=["Root"])
 async def root():
     return {"message": "E-com Agent Hub is running 🚀", "env": APP_ENV}
+
+
+if __name__ == "__main__":
+    # Run via: `python -m ecom_hub.main` from repo root, or
+    # `uvicorn ecom_hub.main:app --app-dir src` for reloading server
+    import uvicorn
+
+    uvicorn.run("ecom_hub.main:app", host="127.0.0.1", port=8000, reload=True)
