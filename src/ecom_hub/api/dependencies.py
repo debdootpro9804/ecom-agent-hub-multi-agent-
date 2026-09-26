@@ -1,11 +1,10 @@
 # src/ecom_hub/api/dependencies.py
 
 import time
-from typing import Optional
 from fastapi import Header, HTTPException
 
 
-async def verify_api_key(x_api_key: Optional[str] = Header(default=None)):
+async def verify_api_key(x_api_key: str = Header(default="dev-key")):
     """
     Simple API key check.
     In production this would check against a real secrets store.
