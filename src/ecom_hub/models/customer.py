@@ -16,9 +16,9 @@ class Customer(BaseModel):
 class CustomerEmail(BaseModel):
     """An inbound email from a customer."""
 
-    customer_id: str
+    customer_id: str = ""
     customer_email: EmailStr
-    customer_name: str
+    customer_name: str = ""
     subject: str
     body: str
     received_at: datetime = Field(default_factory=datetime.utcnow)

@@ -27,3 +27,15 @@ class StockAlert(BaseModel):
     current_stock: int
     reorder_threshold: int
     suggested_reorder_quantity: int
+
+class LowStockEventPayload(BaseModel):
+    """
+    What arrives in the event payload when a low_stock_alert event fires.
+    Kept separate from StockAlert (which is the agent's structured OUTPUT) —
+    this is the simpler INPUT shape.
+    """
+    product_id: str
+    product_name: str
+    current_stock: int
+    
+        

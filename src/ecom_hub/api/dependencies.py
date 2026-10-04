@@ -4,19 +4,15 @@ import time
 from fastapi import Header, HTTPException
 
 
-async def verify_api_key(x_api_key: str = Header(default="dev-key")):
+async def verify_api_key(x_api_key: str | None = Header(default=None)):
     """
-    Simple API key check.
-    In production this would check against a real secrets store.
-    For now, any request with header X-API-Key: dev-key passes.
-    
-    FastAPI automatically reads the X-Api-Key header and passes
-    it here — we don't write any parsing code.
+    Require a valid API key header for protected endpoints.
+    Missing or incorrect values are rejected with 401.
     """
-    if x_api_key != "dev-key":
+    if not x_api_key or x_api_key != "dev-key":
         raise HTTPException(
             status_code=401,
-            detail="Invalid API key"
+            detail="Invalid or missing API key"
         )
     return x_api_key
 
