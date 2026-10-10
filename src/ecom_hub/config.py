@@ -79,6 +79,7 @@ AZURE_OPENAI_DEPLOYMENT_NAME = os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME")
 # App
 APP_ENV = os.getenv("APP_ENV", "development")
 LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")
+DATABASE_URL = os.getenv("DATABASE_URL", "postgresql+asyncpg://ecom:ecom@localhost:5432/ecom_hub")
 
 # Infisical bootstrap (these stay in .env, never in Infisical itself)
 INFISICAL_CLIENT_ID = os.getenv("INFISICAL_CLIENT_ID")
